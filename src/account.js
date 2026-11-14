@@ -1,4 +1,5 @@
 import { Client, SdkErrorCode, StreamableHTTPClientTransport, UnauthorizedError } from '@modelcontextprotocol/client'
+import packageInfo from '../package.json' with { type: 'json' }
 import { createMcpToolDefinition } from '@deepseek-ai/dsh-mcp-client'
 import { credentialKey } from '@deepseek-ai/dsh-credentials'
 import { endpoint, oauthProvider, openCallback, requestAuthorization, sameState, vendorFetch } from './oauth.js'
@@ -228,7 +229,7 @@ export class Account {
     })
     // Keep the exact token attached to each rejected HTTP request, so another
     // request's successful refresh never rotates the same grant again.
-    const client = new Client({ name: 'dsh-remote-dc', version: '0.2.0' }, {
+    const client = new Client({ name: packageInfo.name, version: packageInfo.version }, {
       listChanged: { tools: { onChanged: (error, tools) => {
         if (!error && tools && this.current === state) {
           try { this.publish(state, tools) } catch { void this.connectionFailed(state) }

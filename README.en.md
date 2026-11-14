@@ -1,8 +1,8 @@
-# dsh-remote-dc
+# Remote DC for dsh
 
 English · [简体中文](README.md)
 
-<img src="lib/assets/remote-dc-1119f8b453b0.png" width="104" height="104" alt="dsh-remote-dc icon">
+**Remote DC for dsh** is an unofficial community integration for Desktop Commander in DeepSeek Harness.
 
 **Campus or office server unreachable from the public internet? Give Remote DC a try.**
 
@@ -12,28 +12,28 @@ Need to read experiment logs from off campus or check a build on your office ser
 
 Requires **dsh 0.2.2-rc.1 or later**. The standalone CLI requires Node.js 24.9 or later on the dsh host.
 
-In the desktop app, open **Plugins → Install existing plugin** and enter `dsh-remote-dc@0.1.0`. For the Web profile, run:
+In the desktop app, open **Plugins → Install existing plugin** and enter `dsh-remote-dc@0.1.1`. For the Web profile, run:
 
 ```sh
-dsh plugin --profile web add dsh-remote-dc@0.1.0
+dsh plugin --profile web add dsh-remote-dc@0.1.1
 ```
 
-You can also download the tarball and run the following command from its directory. [GitHub v0.1.0 Release](https://github.com/lonelycrab888/dsh-remote-dc/releases/tag/v0.1.0)
+You can also download the tarball and run the following command from its directory. [GitHub v0.1.1 Release](https://github.com/lonelycrab888/dsh-remote-dc/releases/tag/v0.1.1)
 
 ```sh
-dsh plugin --profile web add ./dsh-remote-dc-0.1.0.tgz
+dsh plugin --profile web add ./dsh-remote-dc-0.1.1.tgz
 ```
 
 ## Connect your account and pair a device
 
-1. Open **Settings → Remote Desktop Commander → Connect account → Open authorization page**. Complete the Desktop Commander sign-in and authorization in a browser on the computer running dsh.
+1. Open **Settings → Remote DC for dsh → Connect account → Open authorization page**. Complete the Desktop Commander sign-in and authorization in a browser on the computer running dsh.
 2. Run the following command on the target machine. Use the same Desktop Commander account to verify the pairing code, then leave the device agent running.
 
    ```sh
    npx @wonderwhy-er/desktop-commander@latest remote
    ```
 
-3. Return to Settings and refresh the device list. In a conversation, try “Use Remote Desktop Commander to show me the latest log in `/home/me/experiments` on the experiment server.”
+3. Return to Settings and refresh the device list. In a conversation, try “Use Remote DC for dsh to show me the latest log in `/home/me/experiments` on the experiment server.”
 
 **Manage and pair devices** in Settings opens the official dashboard, where you can check device status, add a machine, or revoke access. If a device appears offline, check that its agent is still running and that it has outbound network access. [Official pairing guide](https://github.com/desktop-commander/remote-desktop-commander/blob/main/docs/SETUP.md)
 
@@ -126,10 +126,13 @@ dsh plugin --profile web remove dsh-remote-dc
 ## Upstream projects and credits
 
 - The **Desktop Commander team** provides the official Remote MCP service, device agent, and remote file, search, and terminal tools. dsh-remote-dc is an independent integration for DeepSeek Harness that connects to the official Streamable HTTP endpoint using OAuth 2.0 with PKCE. [Desktop Commander](https://desktopcommander.app/) · [Remote Desktop Commander](https://github.com/desktop-commander/remote-desktop-commander) · [Desktop Commander local MCP](https://github.com/wonderwhy-er/DesktopCommanderMCP)
-- The plugin icon takes inspiration from the chip outline of the official Remote MCP icon and adds blue pins and a terminal prompt. [Official icon and MCP manifest](https://github.com/desktop-commander/remote-desktop-commander/blob/main/server.json)
 
 ## Implementation and tests
 
 - `src/account.js` connects to the official MCP service, registers tools, refreshes credentials, and manages the connection. `src/oauth.js` uses the MCP SDK for browser authorization and the local callback.
 - `src/client.cjs` registers the dsh Settings page. `src/settings-route.js` exposes account operations through dsh's authenticated host API.
 - `npm test` covers OAuth, PKCE, state validation, token refresh, and SSH mode. `npm run test:dsh` installs the tarball in a temporary profile and verifies the OAuth callback, MCP tool discovery, device argument forwarding, token rotation, account restoration, and uninstall.
+
+## License
+
+The plugin code is released under the MIT License. [LICENSE](LICENSE)

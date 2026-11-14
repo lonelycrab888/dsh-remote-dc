@@ -1,8 +1,8 @@
-# dsh-remote-dc
+# Remote DC for dsh
 
 [English](README.en.md) · 简体中文
 
-<img src="lib/assets/remote-dc-1119f8b453b0.png" width="104" height="104" alt="dsh-remote-dc 图标">
+**Remote DC for dsh** 是面向 DeepSeek Harness 的 Desktop Commander 非官方社区集成。
 
 **学校或公司内网的服务器在公网无法访问？快试试 Remote DC。**
 
@@ -12,28 +12,28 @@
 
 兼容 **dsh 0.2.2-rc.1 及以上**。使用独立 CLI 时，宿主需要 Node.js 24.9 或以上。
 
-桌面端打开 **插件 → 安装已有插件**，输入 `dsh-remote-dc@0.1.0`。Web profile 也可以用命令安装。
+桌面端打开 **插件 → 安装已有插件**，输入 `dsh-remote-dc@0.1.1`。Web profile 也可以用命令安装。
 
 ```sh
-dsh plugin --profile web add dsh-remote-dc@0.1.0
+dsh plugin --profile web add dsh-remote-dc@0.1.1
 ```
 
-也可从 [GitHub v0.1.0 Release](https://github.com/lonelycrab888/dsh-remote-dc/releases/tag/v0.1.0) 下载安装包，在包所在目录运行以下命令。
+也可从 [GitHub v0.1.1 Release](https://github.com/lonelycrab888/dsh-remote-dc/releases/tag/v0.1.1) 下载安装包，在包所在目录运行以下命令。
 
 ```sh
-dsh plugin --profile web add ./dsh-remote-dc-0.1.0.tgz
+dsh plugin --profile web add ./dsh-remote-dc-0.1.1.tgz
 ```
 
 ## 连接账户与配对设备
 
-1. 打开 **设置 → Remote Desktop Commander → 连接账户 → 打开授权页面**。在运行 dsh 的电脑上，用浏览器完成 Desktop Commander 登录与授权。
+1. 打开 **设置 → Remote DC for dsh → 连接账户 → 打开授权页面**。在运行 dsh 的电脑上，用浏览器完成 Desktop Commander 登录与授权。
 2. 在目标设备运行下方命令。用同一个 Desktop Commander 账户核对配对码，并让设备代理保持运行。
 
    ```sh
    npx @wonderwhy-er/desktop-commander@latest remote
    ```
 
-3. 回到设置页刷新设备列表。在对话里试一句「用 Remote Desktop Commander 查看实验服务器上 `/home/me/experiments` 目录的最新日志。」
+3. 回到设置页刷新设备列表。在对话里试一句「用 Remote DC for dsh 查看实验服务器上 `/home/me/experiments` 目录的最新日志。」
 
 设置页的 **管理与配对设备** 会打开官方控制台，可查看设备状态、添加设备或撤销访问。如果设备处于离线状态，检查目标机器上的代理进程和出站网络。[官方配对指南](https://github.com/desktop-commander/remote-desktop-commander/blob/main/docs/SETUP.md)
 
@@ -126,10 +126,13 @@ dsh plugin --profile web remove dsh-remote-dc
 ## 上游项目与致谢
 
 - **Desktop Commander 团队**提供官方 Remote MCP、设备配对代理和文件、搜索、终端等远程工具。dsh-remote-dc 是面向 DeepSeek Harness 的独立集成，通过官方 Streamable HTTP 端点和 OAuth 2.0 + PKCE 连接账户。[Desktop Commander 官方网站](https://desktopcommander.app/) · [Remote Desktop Commander](https://github.com/desktop-commander/remote-desktop-commander) · [Desktop Commander 本机 MCP](https://github.com/wonderwhy-er/DesktopCommanderMCP)
-- 新图标参考官方 Remote MCP 图标的芯片轮廓，以蓝色引脚和终端符号重新设计。[官方图标及 MCP 清单](https://github.com/desktop-commander/remote-desktop-commander/blob/main/server.json)
 
 ## 实现和验证
 
 - `src/account.js` 连接官方 MCP 服务、注册上游工具、刷新凭据和管理连接。`src/oauth.js` 使用 MCP SDK 驱动浏览器 OAuth 和本机回调。
 - `src/client.cjs` 注册 dsh 设置页。`src/settings-route.js` 通过 dsh 已认证的宿主接口提供账户操作。
 - `npm test` 检查 OAuth、PKCE、状态校验、刷新和旧版 SSH 模式。`npm run test:dsh` 使用临时 profile 安装 tarball、验证 OAuth 登录回调、MCP 工具发现、设备参数透传、令牌轮换、账号恢复和插件卸载。
+
+## 许可证
+
+插件代码以 MIT 许可证发布。[LICENSE](LICENSE)

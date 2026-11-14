@@ -32,7 +32,7 @@ export function oauthProvider({ registration, tokens, redirectUrl, authorize }) 
   return {
     redirectUrl,
     clientMetadata: {
-      client_name: 'DeepSeek Harness — Remote Desktop Commander',
+      client_name: 'Remote DC for dsh',
       redirect_uris: [String(redirectUrl)],
       grant_types: ['authorization_code', 'refresh_token'],
       response_types: ['code'],

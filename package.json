@@ -1,19 +1,21 @@
 {
   "name": "dsh-remote-dc",
-  "version": "0.1.0",
-  "description": "Connect Desktop Commander accounts and paired devices to DeepSeek Harness over official Remote MCP.",
-  "icon": "./lib/assets/remote-dc-1119f8b453b0.png",
+  "version": "0.1.1",
+  "description": "An unofficial community integration for Desktop Commander in DeepSeek Harness.",
+  "license": "MIT",
   "type": "module",
   "main": "./src/index.js",
   "exports": {
     ".": "./src/index.js",
     "./package.json": "./package.json",
-    "./client": "./src/client.cjs"
+    "./client": "./src/client.cjs",
+    "./locale/*.json": "./locale/*.json"
   },
   "files": [
-    "lib/assets",
+    "locale",
     "src",
     "examples",
+    "README.en.md",
     "cordis.patch.yml"
   ],
   "engines": {
@@ -23,7 +25,7 @@
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml",
-      "title": "Remote Desktop Commander"
+      "title": "Remote DC for dsh"
     },
     "client": {
       "platform": "web",
