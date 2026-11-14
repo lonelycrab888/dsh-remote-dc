@@ -1,0 +1,14 @@
+- id: remote-dc
+  config:
+    devices:
+      workstation:
+        enabled: false
+        transport: ssh
+        sshHost: dsh-workstation
+        executable: /home/dc/.npm-global/bin/desktop-commander
+        cwd: /home/dc/projects
+        access: read
+      local:
+        enabled: false
+        transport: local
+        access: read

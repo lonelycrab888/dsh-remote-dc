@@ -1,0 +1,5 @@
+- insert:
+    - id: remote-dc
+      name: dsh-remote-dc
+      config:
+        devices: {}

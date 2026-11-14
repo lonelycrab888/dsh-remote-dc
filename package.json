@@ -1,0 +1,70 @@
+{
+  "name": "dsh-remote-dc",
+  "version": "0.1.0",
+  "description": "Connect Desktop Commander accounts and paired devices to DeepSeek Harness over official Remote MCP.",
+  "icon": "./lib/assets/remote-dc-1119f8b453b0.png",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./package.json": "./package.json",
+    "./client": "./src/client.cjs"
+  },
+  "files": [
+    "lib/assets",
+    "src",
+    "examples",
+    "cordis.patch.yml"
+  ],
+  "engines": {
+    "node": ">=24.9.0",
+    "dsh": ">=0.2.2-rc.1"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml",
+      "title": "Remote Desktop Commander"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-credentials": ">=0.2.2-rc.1",
+    "@deepseek-ai/dsh-mcp-client": ">=0.2.2-rc.1",
+    "@deepseek-ai/dsh-tools": ">=0.2.2-rc.1",
+    "@deepseek-ai/schemastery": "~3.19.0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-mcp-client": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-tools": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-credentials": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "test": "node --test scripts/*.test.js",
+    "test:dsh": "node scripts/smoke.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/client": "2.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lonelycrab888/dsh-remote-dc.git"
+  },
+  "homepage": "https://github.com/lonelycrab888/dsh-remote-dc#readme",
+  "bugs": {
+    "url": "https://github.com/lonelycrab888/dsh-remote-dc/issues"
+  }
+}
