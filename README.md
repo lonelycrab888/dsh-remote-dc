@@ -1,5 +1,7 @@
 # dsh-remote-dc
 
+[English](README.en.md) · 简体中文
+
 <img src="lib/assets/remote-dc-1119f8b453b0.png" width="104" height="104" alt="dsh-remote-dc 图标">
 
 **学校或公司内网的服务器在公网无法访问？快试试 Remote DC。**
